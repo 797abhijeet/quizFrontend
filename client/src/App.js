@@ -1,54 +1,158 @@
-import './App.css';
-import Home from './components/Home';
-import 'bootstrap/dist/css/bootstrap.css';
-import AdminDash from './components/AdminDash';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import RandomHome from './components/Random/RandomHome';
-import CustomHome from './components/CustomQuizz/CustomHome';
-import Login from './components/LoginRegister/Login';
-import Register from './components/LoginRegister/Register';
-import Quizcode from './components/userlogin/Quizcode';
-import QuizContextProvider from './components/CustomQuizz/context/QuizContextProvider';
-import LoginContextProvider from './components/CustomQuizz/context/LoginContextProvider';
-import AdminQuizDetail from './components/AdminQuizDetail';
-import HomeNew from './components/HomePage/HomeNew';
-import Instruction from './components/userlogin/Instruction';
-import UserQuiz from './components/UserQuiz/User_Quiz';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { QuizProvider } from './context/QuizContext';
+import ErrorBoundary from './components/Common/ErrorBoundary';
+import ProtectedRoute from './components/Common/ProtectedRoute';
+import { AdminRoute, UserRoute } from './components/Common/ProtectedRoute';
 
-import About from './components/HomePage/About';
-import Contact from './components/HomePage/Contact';
-import UserQuizContextProvider from './components/CustomQuizz/context/UserQuizContextProvider';
-import Submitted from './components/UserQuiz/Submitted';
-import Result from './components/Results/Result';
-import Leaderboard from './components/Results/LeaderBoard';
+// Layout Components
+import Header from './components/Layout/Header';
+
+// Auth Components
+import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
+
+// Home Components
+import Home from './components/Home/Home';
+import About from './components/Home/About';
+import Contact from './components/Home/Contact';
+
+// Admin Components
+import AdminDashboard from './components/Admin/Dashboard';
+import AdminQuizDetail from './components/Admin/QuizDetail';
+import CustomQuiz from './components/Admin/CustomQuiz/CustomHome';
+import RandomQuiz from './components/Admin/RandomQuiz/RandomHome';
+
+// User Components
+import UserDashboard from './components/User/Dashboard';
+import QuizCode from './components/User/QuizCode';
+import Instruction from './components/User/Instruction';
+import UserQuiz from './components/User/UserQuiz';
+
+// Quiz Components
+import Result from './components/Quiz/Result';
+import Submitted from './components/Quiz/Submitted';
+import LeaderBoard from './components/Quiz/LeaderBoard';
+
+// Tailwind CSS
+import './App.css';
 
 function App() {
-  // const [currentForm,serCurrentForm]=useState('login');
-  console.log("Hello World")
   return (
-    // <AdminDash />
-   
-    <LoginContextProvider>
-    <Router>
-      <Routes>
-        <Route index path='/' element={<HomeNew />} ></Route>
-        <Route path='/register' element={<Register />}></Route>
-        <Route path='/login' element={<Login />}></Route>
-        <Route path='/admin' element={<AdminDash />}></Route>
-        <Route path='/random-quiz' element={<RandomHome />}></Route>
-        <Route path='/custom-quiz' element={<QuizContextProvider><CustomHome /></QuizContextProvider>}></Route>
-        <Route path='/user' element={<Quizcode />}></Route>
-        <Route path='/detail-quiz' element={<AdminQuizDetail />}></Route>
-        <Route path='/instruction' element={<Instruction />}></Route>
-        <Route path='/quiz' element={ <UserQuiz />}></Route>
-        <Route path='/about' element={<About />}></Route>
-        <Route path='/contact' element={<Contact />}></Route>
-        <Route path='/submitted' element={<Submitted />}></Route>
-        <Route path='/result' element={<Result />}></Route>
-        <Route path='/leaderboard' element={<Leaderboard />}></Route>
-      </Routes>
-    </Router>
-    </LoginContextProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <Router>
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+
+            {/* Admin Routes */}
+            <Route
+              path="/admin"
+              element={
+                <AdminRoute>
+                  <AdminDashboard />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/admin/custom-quiz"
+              element={
+                <AdminRoute>
+                  <QuizProvider>
+                    <CustomQuiz />
+                  </QuizProvider>
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/admin/random-quiz"
+              element={
+                <AdminRoute>
+                  <RandomQuiz />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/admin/quiz-detail"
+              element={
+                <AdminRoute>
+                  <AdminQuizDetail />
+                </AdminRoute>
+              }
+            />
+
+            {/* User Routes */}
+            <Route
+              path="/user"
+              element={
+                <UserRoute>
+                  <UserDashboard />
+                </UserRoute>
+              }
+            />
+            <Route
+              path="/user/quiz-code"
+              element={
+                <UserRoute>
+                  <QuizCode />
+                </UserRoute>
+              }
+            />
+            <Route
+              path="/user/instruction"
+              element={
+                <UserRoute>
+                  <Instruction />
+                </UserRoute>
+              }
+            />
+            <Route
+              path="/user/quiz"
+              element={
+                <UserRoute>
+                  <UserQuiz />
+                </UserRoute>
+              }
+            />
+
+            {/* Quiz Result Routes */}
+            <Route
+              path="/quiz/result"
+              element={
+                <ProtectedRoute>
+                  <Result />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/quiz/submitted"
+              element={
+                <ProtectedRoute>
+                  <Submitted />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/quiz/leaderboard"
+              element={
+                <ProtectedRoute>
+                  <LeaderBoard />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* 404 Route */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Router>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 
