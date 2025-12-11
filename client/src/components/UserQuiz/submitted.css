@@ -1,0 +1,35 @@
+/* submitted.css */
+
+
+  .submitted-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .submitted-heading {
+    margin-top: 15%;
+    margin-left: 18%;
+    font-size: 60px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .submitted-content {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .submitted-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .submitted-button:hover {
+    background-color: #0056b3;
+  }
+  

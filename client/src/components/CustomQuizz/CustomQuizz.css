@@ -1,0 +1,70 @@
+*{
+    font-size: 22px;
+    font-weight: bolder;
+}
+/* CustomQuizz.css */
+.custom-mid {
+  background-color: transparent; /* Make the form box transparent */
+}
+
+.custom-head {
+  color: black; /* Make the heading black */
+}
+
+  .custom-mid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .custom-head {
+    background-color: #fff;
+    border: 1px solid #ecdddd;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 650px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .input1 {
+    margin-bottom: 20px;
+  }
+  
+  .input1 label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .input1 input {
+    width: 100%;
+    font-weight: bold;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 18px;
+  }
+  
+  .custom-final {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* margin-top: 20px; */
+  }
+  
+  .button-32 {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 20px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .button-32:hover {
+    background-color: #45a049;
+  }
+  
