@@ -31,7 +31,7 @@ const AdminQuizDetail = () => {
 
   const getHistory = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/admin-user-history", {
+      const response = await axios.post("https://quizbackend-3-fjmj.onrender.com/admin-user-history", {
         quizId: detail.quiz._id
       });
       if (response.data.result) {
@@ -46,7 +46,7 @@ const AdminQuizDetail = () => {
 
   const checkResultPublished = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/check-result-published', {
+      const response = await axios.post('https://quizbackend-3-fjmj.onrender.com/check-result-published', {
         adminId: detail.adminId,
         quizId: detail.quiz._id
       });
@@ -67,7 +67,7 @@ const AdminQuizDetail = () => {
     }));
 
     try {
-      const response = await axios.post('http://localhost:3000/publish-result', {
+      const response = await axios.post('https://quizbackend-3-fjmj.onrender.com/publish-result', {
         adminId: detail.adminId,
         userIds: userIds,
         quizId: detail.quiz._id
@@ -86,7 +86,7 @@ const AdminQuizDetail = () => {
 
   const calculateScore = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/calculate-score', {
+      const response = await axios.post('https://quizbackend-3-fjmj.onrender.com/calculate-score', {
         quizId: detail.quiz._id
       });
       if (response.data) {

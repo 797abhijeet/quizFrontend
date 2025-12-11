@@ -73,7 +73,7 @@ const CustomHome = () => {
     return ;
     }
     try{
-      const response = await axios.post('http://localhost:8000/add-quiz',{
+      const response = await axios.post('https://quizbackend-3-fjmj.onrender.com/add-quiz',{
         name: name,
         description: desc,
         dateCreated: new Date(),
